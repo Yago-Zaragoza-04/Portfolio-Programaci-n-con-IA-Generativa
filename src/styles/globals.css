@@ -1,0 +1,130 @@
+body{overflow-x:hidden}
+.title{font-size:clamp(1.8rem,4.5vw,3.2rem);line-height:1.1;margin:0 0 .75rem;font-weight:800}
+.subtitle{color:var(--muted);margin:0 0 1rem}
+.codeframe{background:#0b0b0b;border:1px solid #1d1d1d;border-radius:12px;padding:1rem;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;overflow:auto; white-space:pre-wrap; word-break:break-word}
+:root{--bg:#000;--fg:#fff;--muted:#cfcfcf;--card:#111;--border:#222}
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif}
+
+/* Scroll snap storytelling */
+.main{ scroll-snap-type: y mandatory; height: 100vh; overflow-y: scroll; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+.section{
+  position: relative;
+  height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  contain: content;
+}
+.content{ position:fixed; inset:0; overflow:auto; transition: opacity .28s ease, filter .28s ease, visibility .28s; --contrast:4; --blur:.4rem; opacity:0; visibility:hidden; filter: blur(var(--blur)) contrast(var(--contrast)); }
+.content{ overflow:hidden }
+.section[data-active] .content{ opacity:1; visibility:visible; filter:none }
+
+/* Fit content to viewport */
+.section .container{ height:100vh; padding:clamp(12px,3vh,24px) clamp(12px,3vw,24px); display:grid; grid-template-rows:auto auto 1fr; gap:12px; box-sizing:border-box }
+.section .body{ min-height:0; overflow:hidden; display:grid; align-content:center; padding-block: clamp(8px, 2vh, 24px) }
+.grid.two{ grid-template-columns: repeat(2, minmax(320px, 560px)); align-items:stretch; justify-content:center; gap:1.25rem; width:fit-content; margin-inline:auto; --tile-h: clamp(180px, 30vh, 380px) }
+.grid.two > *{ min-height:0; min-width:0 }
+.card{ display:flex; flex-direction:column }
+.card .media{ width:100%; height:var(--tile-h); border-radius:12px; border:1px dashed #444; background:#000; display:grid; place-items:center; color:#aaa }
+.card .codeframe{ height:var(--tile-h); min-height:0 }
+.codeframe pre{ max-height:100%; overflow:auto }
+
+@media (max-width: 900px){
+  .grid.two{ grid-template-columns:1fr; }
+}
+
+@media (max-width: 1200px){
+  .grid.two{ --tile-h: clamp(170px, 28vh, 340px) }
+}
+
+/* Prevent overflow on short-height viewports */
+@media (max-height: 750px){
+  .section .container{ padding: 12px 16px; gap:8px }
+  .title{ font-size: clamp(1.6rem, 4vw, 2.4rem); margin-bottom:.5rem }
+  .subtitle{ margin-bottom:.75rem }
+  .grid.two{ gap:.75rem }
+  .card{ padding:1rem }
+}
+@media (max-height: 650px){
+  .grid.two{ grid-template-columns:1fr }
+}
+
+@media (max-width: 600px){
+  .card{ padding:.875rem }
+  .grid.two{ --tile-h: clamp(160px, 32vh, 320px) }
+}
+.container{max-width:1280px;width:100%;margin-inline:auto}
+
+/* Presentation tile smaller so everything fits */
+.card.card-presentation .media{ height:clamp(120px, 22vh, 240px) }
+
+.title{font-size:clamp(2rem,5vw,4rem);line-height:1.1;margin:0 0 1rem;font-weight:800}
+.subtitle{color:var(--muted);margin:0 0 2rem}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem}
+.codeframe{background:#0b0b0b;border:1px solid #1d1d1d;border-radius:12px;padding:1rem;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;overflow:auto}
+.label-strong{font-weight:700;margin-bottom:.5rem}
+.card-presentation{margin-top:0}
+.card.card-presentation{ width:100%; max-width:none; margin-inline:0 }
+/* Make presentation tile span both columns inside the two-column grid */
+.grid.two .card.card-presentation{ grid-column: 1 / -1; justify-self: stretch; width: 100% }
+
+.grid{display:grid;gap:1.25rem}
+@media (min-width: 900px){
+  .grid.two{ grid-template-columns: repeat(2, minmax(320px, 560px)) }
+}
+
+/* Progress dots on right side */
+.progress{ display:none }
+
+/* New progress rail */
+.progress-rail{ position:fixed; right:24px; top:50%; transform:translateY(-50%); height:60vh; width:20px; z-index:60; --accent:#fff }
+.pr-rail{ display:none }
+.pr-ticks{ list-style:none; margin:0; padding:0; position:absolute; inset:0; display:flex; flex-direction:column; justify-content:space-between; align-items:center }
+.pr-tick{ width:18px; height:18px; border-radius:999px; background:transparent; border:2px solid #fff; opacity:1; cursor:pointer; position:relative; outline:none }
+.pr-tick::after{ content:""; position:absolute; top:50%; left:50%; width:8px; height:8px; transform:translate(-50%, -50%); border-radius:999px; background:var(--tick-color, #888); opacity:.96; transition: width .18s ease-out, height .18s ease-out, box-shadow .18s ease-out, background .18s ease-out }
+.pr-tick.active{ box-shadow: 0 0 0 2px rgba(255,255,255,.35) inset; }
+.pr-tick.active::after{ width:10px; height:10px; background:var(--tick-color, #fff); box-shadow:0 0 16px color-mix(in srgb, var(--tick-color, #fff) 85%, transparent), 0 0 0 2px rgba(255,255,255,.25) inset }
+.pr-tick:focus-visible{ outline:2px solid color-mix(in srgb, var(--tick-color, #fff) 70%, #fff); outline-offset:2px }
+
+.footer{
+  text-align:center;color:var(--muted);padding:2rem 1rem
+}
+.link{color:#fff;text-decoration:underline dotted}
+
+/* Hero intro */
+.hero{position:relative;min-height:100vh;overflow:hidden}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.5)}
+.hero-gradient{position:absolute;inset:0;background:radial-gradient(1200px 800px at 20% 20%,rgba(255,255,255,.08),transparent 60%),radial-gradient(1200px 800px at 80% 80%,rgba(255,255,255,.06),transparent 60%);animation:pulse 10s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.6),rgba(0,0,0,.6))}
+.hero-content{position:relative;z-index:2;padding:6rem 1rem;display:flex;flex-direction:column;gap:1rem}
+.hero-title{font-size:clamp(2.5rem,7vw,5rem);line-height:1.05;margin:0;font-weight:900;letter-spacing:-.02em;text-shadow:0 2px 16px rgba(0,0,0,.6)}
+.hero-title::after{content:"";display:block;width:min(14ch,220px);height:4px;background:rgba(255,255,255,.9);border-radius:2px;margin-top:.6rem}
+.hero-subtitle{color:#d0d0d0;margin:0;font-size:clamp(1rem,2.5vw,1.35rem)}
+
+/* Section background with radial light; tint controlled via --accent */
+.section-bg{ position:absolute; inset:0; pointer-events:none; z-index:-1; }
+.section-bg::before{
+  content:""; position:absolute; inset:-20%;
+  background: radial-gradient(600px 600px at 30% 30%, color-mix(in srgb, var(--accent, #fff) 15%, transparent), transparent 70%),
+              radial-gradient(700px 700px at 70% 70%, color-mix(in srgb, var(--accent, #fff) 10%, transparent), transparent 80%);
+  filter: blur(30px);
+}
+
+/* Modern gradient background */
+.gradient-background{ position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none }
+.gradient-sphere{ position:absolute; border-radius:50%; filter: blur(60px) }
+.sphere-1{ width:40vw; height:40vw; background:linear-gradient(40deg, rgba(255,0,128,.8), rgba(255,102,0,.4)); top:-10%; left:-10%; animation: float-1 15s ease-in-out infinite alternate }
+.sphere-2{ width:45vw; height:45vw; background:linear-gradient(240deg, rgba(72,0,255,.8), rgba(0,183,255,.4)); bottom:-20%; right:-10%; animation: float-2 18s ease-in-out infinite alternate }
+.sphere-3{ width:30vw; height:30vw; background:linear-gradient(120deg, rgba(133,89,255,.5), rgba(98,216,249,.3)); top:60%; left:20%; animation: float-3 20s ease-in-out infinite alternate }
+.noise-overlay{ position:absolute; inset:0; opacity:.05; z-index:5; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E") }
+.grid-overlay{ position:absolute; inset:0; background-size:40px 40px; background-image:linear-gradient(to right, rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.03) 1px, transparent 1px); z-index:2 }
+.glow{ position:absolute; width:40vw; height:40vh; background:radial-gradient(circle, rgba(72,0,255,.15), transparent 70%); top:50%; left:50%; transform:translate(-50%, -50%); z-index:2; animation:pulse 8s infinite alternate; filter:blur(30px) }
+.particles-container{ position:absolute; inset:0; z-index:3 }
+.particle{ position:absolute; border-radius:50%; opacity:0; background: color-mix(in srgb, var(--accent, #ffffff) 85%, #ffffff 15%); box-shadow: 0 0 8px color-mix(in srgb, var(--accent, #ffffff) 60%, transparent) }
+
+@keyframes float-1{ 0%{ transform:translate(0,0) scale(1) } 100%{ transform:translate(10%,10%) scale(1.1) } }
+@keyframes float-2{ 0%{ transform:translate(0,0) scale(1) } 100%{ transform:translate(-10%,-5%) scale(1.15) } }
+@keyframes float-3{ 0%{ transform:translate(0,0) scale(1); opacity:.3 } 100%{ transform:translate(-5%,10%) scale(1.05); opacity:.6 } }

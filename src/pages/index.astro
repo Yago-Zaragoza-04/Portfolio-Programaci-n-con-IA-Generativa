@@ -1,0 +1,60 @@
+---
+import Section from '@components/Section.astro';
+import CodeFrame from '@components/CodeFrame';
+import ProgressDots from '@components/ProgressDots';
+import IntroHero from '@components/IntroHero';
+import ProgressRail from '@components/ProgressRail';
+import SectionBackground from '@components/SectionBackground';
+import ModernGradientBackground from '@components/ModernGradientBackground';
+import { modules } from '@data/modules';
+import '../styles/globals.css';
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio — Programación con IA Generativa (UP)</title>
+    <meta name="description" content="Portfolio interactivo de la materia Programación con IA Generativa — Universidad de Palermo." />
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="stylesheet" href="https://unpkg.com/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+  </head>
+  <body>
+    <ModernGradientBackground client:load />
+    <main class="main">
+      <ProgressRail client:load labels={modules.map(m => m.title)} accents={modules.map(m => m.accent || '#fff')} />
+
+      {/* Intro hero (sección 0) */}
+  <IntroHero client:load title={modules[0].title} subtitle={modules[0].subtitle} videoSrc={modules[0].videoPlaceholder} />
+
+      {/* Resto de secciones */}
+      {modules.slice(1).map((m, idx) => (
+        <Section index={idx+1} title={m.title} subtitle={m.subtitle}>
+          <Fragment slot="background"><SectionBackground client:load accent={m.accent} /></Fragment>
+          <div class="grid two">
+            <div class="card">
+              <div class="label-strong">Video</div>
+              <div class="media">
+                <span>Coloca aquí el video: {m.videoPlaceholder}</span>
+              </div>
+            </div>
+
+            <CodeFrame client:load title="Código / Input del ejemplo" placeholder={m.codePlaceholder} />
+            {m.presentationPlaceholder && (
+              <div class="card card-presentation">
+                <div class="label-strong">Presentación</div>
+                <div class="media">
+                  <span>Agrega tu PPT/PDF: {m.presentationPlaceholder}</span>
+                </div>
+              </div>
+            )}
+          </div>
+        </Section>
+      ))}
+
+      <footer class="footer">
+        <p>Universidad de Palermo — Programación con IA Generativa • Portfolio creado con <a class="link" href="https://github.com/features/copilot" target="_blank" rel="noreferrer">GitHub Copilot</a> y Astro + React.</p>
+      </footer>
+    </main>
+  </body>
+</html>

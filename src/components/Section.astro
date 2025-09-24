@@ -1,0 +1,22 @@
+---
+export interface Props {
+  index: number;
+  title: string;
+  subtitle?: string;
+}
+
+const { index, title, subtitle } = Astro.props as Props;
+---
+
+<section class="section" data-section-index={index}>
+  <div class="content">
+    <div class="container">
+      <h2 class="title">{title}</h2>
+      {subtitle && <p class="subtitle">{subtitle}</p>}
+      <div class="body">
+        <slot />
+      </div>
+    </div>
+  </div>
+  <slot name="background" />
+</section>

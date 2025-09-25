@@ -4,12 +4,6 @@
   "installCommand": "npm ci",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "functions": {
-    "api/**": {
-      "maxDuration": 10,
-      "memory": 128
-    }
-  },
   "headers": [
     {
       "source": "/(.*)",

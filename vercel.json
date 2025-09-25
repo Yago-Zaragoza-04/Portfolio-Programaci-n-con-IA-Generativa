@@ -1,7 +1,7 @@
 {
   "version": 2,
   "framework": "astro",
-  "installCommand": "npx --yes vercel-git-lfs@3 install && npm ci",
+  "installCommand": "git lfs install --local && git lfs fetch --all && git lfs checkout && npm ci",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "headers": [

@@ -23,7 +23,7 @@ export const modules: ModuleItem[] = [
     subtitle: 'De lo general a lo específico, ejemplos, dividir, evitar ambigüedad y más.',
     videoPlaceholder: '/videos/clase1.mp4',
     codePlaceholder: `/* Ejemplo de prompt estructurado */\nObjetivo: Generar componente React accesible\nContexto: Proyecto Astro + React\nRequisitos:\n- Semántica correcta\n- Contrast ratio AA\n- Comentarios sobre decisiones\nSalida: Código + explicación`,
-    presentationPlaceholder: '/presentaciones/clase1.pptx',
+  presentationPlaceholder: '/presentaciones/Clase 1 - 04 - Prompt Engineering para Copilot.pptx (1).pdf',
     accent: '#ffd166'
   },
   {
@@ -32,7 +32,7 @@ export const modules: ModuleItem[] = [
     subtitle: 'Autocompletado y próxima edición (NES).',
     videoPlaceholder: '/videos/clase2.mp4',
     codePlaceholder: `// Placeholder del código usado en el video\nfunction suma(a, b){ return a + b } // Mejorar tipos y tests…`,
-    presentationPlaceholder: '/presentaciones/clase2.pptx',
+  presentationPlaceholder: '/presentaciones/Clase 2 - 01 - Sugerencias de Código.pptx.pdf',
     accent: '#06d6a0'
   },
   {
@@ -41,7 +41,7 @@ export const modules: ModuleItem[] = [
     subtitle: 'Interacción con asistentes de código, y visión.',
     videoPlaceholder: '/videos/clase3.mp4',
     codePlaceholder: `// Prompt de chat + imagen\n// Describí la UI y pedí feedback sobre accesibilidad.`,
-    presentationPlaceholder: '/presentaciones/clase3.pptx',
+  presentationPlaceholder: '/presentaciones/Clase 3 - 01 - Chat, Asistente de Edición y Visión.pptx.pdf',
     accent: '#118ab2'
   },
   {
@@ -50,7 +50,7 @@ export const modules: ModuleItem[] = [
     subtitle: 'Renombrar, optimizar, eliminar repetición y modularizar.',
     videoPlaceholder: '/videos/clase4.mp4',
     codePlaceholder: `// Código antes y después de refactor\n// Mostrar funciones renombradas y módulos extraídos.`,
-    presentationPlaceholder: '/presentaciones/clase4.pptx',
+  presentationPlaceholder: '/presentaciones/Clase 4 - 01 - Refactorización de código.pptx.pdf',
     accent: '#ef476f'
   },
   {
@@ -59,7 +59,7 @@ export const modules: ModuleItem[] = [
     subtitle: 'Revisión de selección y feedback del asistente.',
     videoPlaceholder: '/videos/clase5.mp4',
     codePlaceholder: `// Snippet con issues de estilo y complejidad\n// Comentarios del asistente y cambios propuestos.`,
-    presentationPlaceholder: '/presentaciones/clase5.pptx',
+  presentationPlaceholder: '/presentaciones/Clase 5 - 01 - Revisión de código.pptx.pdf',
     accent: '#a8dadc'
   },
   {
@@ -68,7 +68,7 @@ export const modules: ModuleItem[] = [
     subtitle: 'Evaluar GPT-4.1, o3-mini, Gemini 2.5, Claude Sonnet.',
     videoPlaceholder: '/videos/clase6.mp4',
     codePlaceholder: `// Prompt idéntico con dos LLMs\n// Comparar claridad, pasos y calidad de código.`,
-    presentationPlaceholder: '/presentaciones/clase6.pptx',
+  presentationPlaceholder: '/presentaciones/Clase 6 - 01 - Modelos LLM para asistencia de código.pptx.pdf',
     accent: '#ff9f1c'
   },
   {
@@ -77,7 +77,7 @@ export const modules: ModuleItem[] = [
     subtitle: 'Conectar a un servidor MCP y usar sus herramientas.',
     videoPlaceholder: '/videos/clase7.mp4',
     codePlaceholder: `// Ejemplo de invocación a herramienta MCP\n// + resultado devuelto y cómo se integró al código.`,
-    presentationPlaceholder: '/presentaciones/clase7.pptx',
+    presentationPlaceholder: '/presentaciones/Clase 07 - Agentes - Herramientas - Servidores MCP.pptx (1).pdf',
     accent: '#b5179e'
   },
   {

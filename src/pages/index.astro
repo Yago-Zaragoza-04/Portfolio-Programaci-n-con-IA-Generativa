@@ -6,6 +6,7 @@ import IntroHero from '@components/IntroHero';
 import ProgressRail from '@components/ProgressRail';
 import SectionBackground from '@components/SectionBackground';
 import ModernGradientBackground from '@components/ModernGradientBackground';
+import PresentationCard from '@components/PresentationCard';
 import { modules } from '@data/modules';
 import '../styles/globals.css';
 ---
@@ -39,14 +40,14 @@ import '../styles/globals.css';
               </div>
             </div>
 
-            <CodeFrame client:load title="Código / Input del ejemplo" placeholder={m.codePlaceholder} />
+            <CodeFrame
+              client:load
+              title="Código / Input del ejemplo"
+              placeholder={m.codePlaceholder}
+              blurOverlay={m.id === 'cierre' ? { enabled: true, href: 'https://github.com/Yago-Zaragoza-04/Portfolio-Programaci-n-con-IA-Generativa', label: 'Abrir repositorio en GitHub', iconSrc: '/favicon.svg' } : undefined}
+            />
             {m.presentationPlaceholder && (
-              <div class="card card-presentation">
-                <div class="label-strong">Presentación</div>
-                <div class="media">
-                  <span>Agrega tu PPT/PDF: {m.presentationPlaceholder}</span>
-                </div>
-              </div>
+              <PresentationCard client:load src={m.presentationPlaceholder} title={m.title} />
             )}
           </div>
         </Section>

@@ -14,9 +14,16 @@ type Props = {
   placeholder?: string;
   children?: React.ReactNode;
   code?: string;
+  // Optional blurred overlay that, when clicked, navigates to a URL
+  blurOverlay?: {
+    enabled: boolean;
+    href: string;
+    label?: string;
+    iconSrc?: string; // optional custom icon, defaults to /favicon.svg
+  };
 };
 
-export default function CodeFrame({ title, language = 'tsx', placeholder, children, code }: Props) {
+export default function CodeFrame({ title, language = 'tsx', placeholder, children, code, blurOverlay }: Props) {
   const [copied, setCopied] = useState(false);
   const raw = useMemo(() => {
     if (typeof code === 'string') return code;
@@ -53,6 +60,40 @@ export default function CodeFrame({ title, language = 'tsx', placeholder, childr
           <code className={`language-${language}`} dangerouslySetInnerHTML={{ __html: highlighted }} />
         </pre>
       </div>
+
+      {blurOverlay?.enabled && (
+        <a
+          href={blurOverlay.href}
+          target="_blank"
+          rel="noopener"
+          aria-label={blurOverlay.label || 'Abrir enlace'}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 12,
+            backdropFilter: 'blur(10px) saturate(130%)',
+            WebkitBackdropFilter: 'blur(10px) saturate(130%)',
+            background: 'rgba(0,0,0,0.22)',
+            textDecoration: 'none',
+            color: 'white',
+            fontWeight: 600,
+            letterSpacing: 0.2
+          }}
+        >
+          <span style={{
+            padding: '10px 16px',
+            borderRadius: 10,
+            border: '1px dashed rgba(255,255,255,0.45)',
+            background: 'rgba(0,0,0,0.32)',
+            textShadow: '0 2px 8px rgba(0,0,0,0.45)'
+          }}>
+            {blurOverlay.label || 'Ver en GitHub'}
+          </span>
+        </a>
+      )}
     </div>
   );
 }

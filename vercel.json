@@ -1,9 +1,15 @@
 {
+  "version": 2,
+  "framework": "astro",
+  "installCommand": "npm ci",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "installCommand": "npm ci",
-  "framework": "astro",
-  "functions": {},
+  "functions": {
+    "api/**": {
+      "maxDuration": 10,
+      "memory": 128
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",

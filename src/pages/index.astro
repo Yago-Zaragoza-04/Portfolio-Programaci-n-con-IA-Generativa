@@ -7,8 +7,19 @@ import ProgressRail from '@components/ProgressRail';
 import SectionBackground from '@components/SectionBackground';
 import ModernGradientBackground from '@components/ModernGradientBackground';
 import PresentationCard from '@components/PresentationCard';
+import VideoCard from '@components/VideoCard';
 import { modules } from '@data/modules';
 import '../styles/globals.css';
+// Carga perezosa del código fuente crudo desde src/code/*.py
+// Nota: import.meta.glob necesita rutas relativas al archivo actual
+// Mapeo: '/src/code/archivo.py' -> contenido raw
+const codeFiles = import.meta.glob('../code/*', { eager: true, query: '?raw', import: 'default' }) as Record<string, string>;
+const getCode = (codeFile?: string) => {
+  if (!codeFile) return undefined;
+  // codeFile viene como '/src/code/xxx.py'; la clave en glob es '../code/xxx.py'
+  const key = codeFile.replace('/src/', '../');
+  return codeFiles[key];
+};
 ---
 
 <html lang="es">
@@ -33,17 +44,14 @@ import '../styles/globals.css';
         <Section index={idx+1} title={m.title} subtitle={m.subtitle}>
           <Fragment slot="background"><SectionBackground client:load accent={m.accent} /></Fragment>
           <div class="grid two">
-            <div class="card">
-              <div class="label-strong">Video</div>
-              <div class="media">
-                <span>Coloca aquí el video: {m.videoPlaceholder}</span>
-              </div>
-            </div>
+            <VideoCard client:load src={m.videoPlaceholder} title={m.title} />
 
             <CodeFrame
               client:load
               title="Código / Input del ejemplo"
               placeholder={m.codePlaceholder}
+              code={getCode(m.codeFile)}
+              language={m.codeLanguage || 'tsx'}
               blurOverlay={m.id === 'cierre' ? { enabled: true, href: 'https://github.com/Yago-Zaragoza-04/Portfolio-Programaci-n-con-IA-Generativa', label: 'Abrir repositorio en GitHub', iconSrc: '/favicon.svg' } : undefined}
             />
             {m.presentationPlaceholder && (

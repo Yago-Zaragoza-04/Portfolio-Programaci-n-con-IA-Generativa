@@ -16,13 +16,12 @@ html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-a
   scroll-snap-stop: always;
   contain: content;
 }
-.content{ position:fixed; inset:0; overflow:auto; transition: opacity .28s ease, filter .28s ease, visibility .28s; --contrast:4; --blur:.4rem; opacity:0; visibility:hidden; filter: blur(var(--blur)) contrast(var(--contrast)); }
-.content{ overflow:hidden }
-.section[data-active] .content{ opacity:1; visibility:visible; filter:none }
+.content{ position:fixed; inset:0; transition: opacity .28s ease, filter .28s ease, visibility .28s; --contrast:4; --blur:.4rem; opacity:0; visibility:hidden; filter: blur(var(--blur)) contrast(var(--contrast)); overflow:hidden }
+.section[data-active] .content{ opacity:1; visibility:visible; filter:none; overflow:visible }
 
 /* Fit content to viewport */
 .section .container{ height:100vh; padding:clamp(12px,3vh,24px) clamp(12px,3vw,24px); display:grid; grid-template-rows:auto auto 1fr; gap:12px; box-sizing:border-box }
-.section .body{ min-height:0; overflow:hidden; display:grid; align-content:center; padding-block: clamp(8px, 2vh, 24px) }
+.section .body{ min-height:0; overflow:visible; display:grid; align-content:center; padding-block: clamp(8px, 2vh, 24px) }
 .grid.two{ grid-template-columns: repeat(2, minmax(320px, 560px)); align-items:stretch; justify-content:center; gap:1.25rem; width:fit-content; margin-inline:auto; --tile-h: clamp(180px, 30vh, 380px) }
 .grid.two > *{ min-height:0; min-width:0 }
 .card{ display:flex; flex-direction:column }

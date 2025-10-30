@@ -46,11 +46,12 @@ export default function PresentationCard({ src, title }: Props) {
             style={{
               display: 'block',
               width: '100%',
-              height: '320px',
+              height: '100%',
               background: 'transparent',
               padding: 0,
               border: 'none',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              position: 'relative'
             }}
           >
             <iframe
@@ -77,19 +78,21 @@ export default function PresentationCard({ src, title }: Props) {
                 color: 'white',
                 fontWeight: 600,
                 letterSpacing: 0.3,
-                textShadow: '0 2px 8px rgba(0,0,0,0.6)'
+                textShadow: '0 2px 8px rgba(0,0,0,0.6)',
+                pointerEvents: 'none'
               }}
             >
               <span style={{
-                padding: '10px 16px',
+                padding: '8px 14px',
                 borderRadius: 10,
-                border: '1px dashed rgba(255,255,255,0.35)'
+                border: '1px dashed rgba(255,255,255,0.35)',
+                fontSize: 'clamp(0.75rem, 1.8vw, 0.95rem)'
               }}>Tocar para ver en grande</span>
             </div>
           </button>
         ) : (
           // PPTX or other: offer a direct link
-          <div style={{ height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <a className="button" href={src} target="_blank" rel="noopener">
               Descargar presentación (PPTX)
             </a>

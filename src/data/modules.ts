@@ -95,6 +95,50 @@ export const modules: ModuleItem[] = [
     accent: '#b5179e'
   },
   {
+    id: 'clase8',
+    title: 'Clase 8 — Depuración de Errores',
+    subtitle: 'Técnicas y herramientas para depurar código con IA.',
+    videoPlaceholder: '/videos/Video_Clase_7.mp4',
+    codePlaceholder: '# Ver archivo src/code/clase_8.py',
+    codeLanguage: 'python',
+    codeFile: '/src/code/clase_8.py',
+    presentationPlaceholder: '/presentaciones/Clase 8 - 1-Depuración de errores.pdf',
+    accent: '#7209b7'
+  },
+  {
+    id: 'clase9',
+    title: 'Clase 9 — Pruebas Unitarias e Integrales con Agente de IA',
+    subtitle: 'Automatización de pruebas con asistencia de IA.',
+    videoPlaceholder: '/videos/Video_Clase_8.mp4',
+    codePlaceholder: '# Ver archivo src/code/clase_9.py',
+    codeLanguage: 'python',
+    codeFile: '/src/code/clase_9.py',
+    presentationPlaceholder: '/presentaciones/Clase 9 - 1-Pruebas con IA.pdf',
+    accent: '#3a0ca3'
+  },
+  {
+    id: 'clase10',
+    title: 'Clase 10 — Documentación y Seguridad con IA',
+    subtitle: 'Documentación automática y análisis de seguridad.',
+    videoPlaceholder: '/videos/Video_Clase_9.mp4',
+    codePlaceholder: '# Ver archivo src/code/clase_10.py',
+    codeLanguage: 'python',
+    codeFile: '/src/code/clase_10.py',
+    presentationPlaceholder: '/presentaciones/Clase 10 - 1-Documentación con IA.pdf',
+    accent: '#4361ee'
+  },
+  {
+    id: 'clase11',
+    title: 'Clase 11 — Coincidencia de Código Público',
+    subtitle: 'Detección y manejo de código público duplicado.',
+    videoPlaceholder: '/videos/Video_Clase_10.mp4',
+    codePlaceholder: '# Ver archivo src/code/clase_11.py',
+    codeLanguage: 'python',
+    codeFile: '/src/code/clase_11.py',
+    presentationPlaceholder: '/presentaciones/Clase 11 - 1-Coincidencia de Código Público.pptx.pdf',
+    accent: '#4cc9f0'
+  },
+  {
     id: 'cierre',
     title: 'Cierre — Hecho con GitHub Copilot',
     subtitle: 'Esta página fue creada con ayuda de GitHub Copilot.',
